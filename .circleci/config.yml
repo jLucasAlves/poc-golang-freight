@@ -1,0 +1,185 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@6.2.0
+
+commands:
+  ecr-build-push: aws-ecr/build-and-push-image
+
+checkmarx_docker: &checkmarx_docker
+  environment:
+    CX_AUTO_SETUP: 1
+  docker:
+    - image: 556684128444.dkr.ecr.us-east-1.amazonaws.com/checkmarx:latest
+      aws_auth:
+        aws_access_key_id: $AWS_ECR_ACCESS_KEY_ID
+        aws_secret_access_key: $AWS_ECR_SECRET_ACCESS_KEY
+
+workflows:
+  build-deploy:
+    jobs:
+    # TODO: refact checkmark-pr to run only in other branchs
+      - checkmarx-pr:
+          context: CHECKMARX
+          filters:
+            branches:
+              ignore:
+                - master
+      - checkmarx:
+          context: CHECKMARX
+          filters:
+            branches:
+              only:
+                - master
+      # # Static Analisys
+      # - sonarqube:
+      #     context: SONAR
+      # Tests step
+      - tests:
+          context: TESTS
+      # Build and push image
+      - build-and-push:
+          context: BUILD_AND_PUSH
+          requires:
+            - tests
+            # - sonarqube
+            - checkmarx
+      # Deploy to QA
+      - deploy-to-qa:
+          context: DEPLOY
+          requires:
+            - build-and-push
+      # Deploy to QA
+      - deploy-to-live:
+          context: DEPLOY
+          requires:
+            - build-and-push
+      # # Deploy to LIVE
+      # - wait-approval:
+      #     type: approval
+      #     requires:
+      #       - deploy-to-qa
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      # - deploy-to-live:
+      #     requires:
+      #       - wait-approval
+      #     context: DEPLOY
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+
+jobs:
+  # Tests step
+  tests:
+    docker:
+      - image: docker/compose:1.27.4
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+          version: 19.03.13
+      - run:
+          name: Create network
+          # Circle is acting up, it's drowing error if the network exists and if it exists
+          command: docker network create docker-dafiti_default || true
+      - run:
+          name: Build image
+          command: docker-compose build --build-arg GITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN} ci
+      - run:
+          name: Run unit tests
+          command: docker-compose run --rm ci
+
+  # Sonarqube
+  sonarqube:
+    docker:
+      - image: newtmitch/sonar-scanner:3.0
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+          version: 19.03.13
+      - run:
+          name: Run Sonar
+          command: |
+            sonar-scanner \
+              -Dsonar.analysis.mode=preview \
+              -Dsonar.host.url=${SONAR_URL} \
+              -Dsonar.login=${SONAR_TOKEN}
+
+  # Build and push image to repository
+  build-and-push:
+    docker:
+      - image: circleci/golang:latest
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+          version: 19.03.13
+      - run:
+          name: Generate rev.txt
+          command: git show -s --format="%ai %H %s %aN" HEAD > rev.txt
+      - ecr-build-push:
+          checkout: false
+          repo: ${CIRCLE_PROJECT_REPONAME}
+          tag: $(echo ${CIRCLE_SHA1} | head -c7)
+          extra-build-args: --build-arg GITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN}
+
+  # Deploy to QA
+  deploy-to-qa:
+    docker:
+      - image: circleci/golang:latest
+    steps:
+      - run:
+          name: Checkout argo repo
+          command: git clone https://${GITHUB_ACCESS_TOKEN}@github.com/dafiti-group/argo.git
+      - run:
+          name: Commit change image tag into qa directory
+          command: |
+            cd argo/clusters/eks-qa-dafiti-latam/apps <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<change the path to file of your application here and remove this warning
+            IMAGE="tag: \"$(echo ${CIRCLE_SHA1} | head -c7)\""
+            sed -Ei "s|tag: \"[a-z0-9]+\"|${IMAGE}|" APPLICATION-NAME.yaml <<<<<<<<<<<<<<<<<<change the file name of your application here and remove this warning
+            git config --global user.email "k8s-values-updater@mailinator.com"
+            git config --global user.name "k8s-values-updater"
+            git diff
+            git add .
+            git commit -m "changing APPLICATION-NAME image tag value for qa"
+            git push
+
+  # Deploy to live
+  deploy-to-live:
+    docker:
+      - image: circleci/golang:latest
+    steps:
+      - run:
+          name: Checkout argo repo
+          command: git clone https://${GITHUB_ACCESS_TOKEN}@github.com/dafiti-group/argo.git
+      - run:
+          name: Commit change image tag into live directory
+          command: |
+            cd argo/clusters/eks-live-dafiti-latam/apps/ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<change the path to file of your application here and remove this warning
+            IMAGE="tag: \"$(echo ${CIRCLE_SHA1} | head -c7)\""
+            sed -Ei "s|tag: \"[a-z0-9]+\"|${IMAGE}|" APPLICATION-NAME.yaml <<<<<<<<<<<<<<<<<<change the file name of your application here and remove this warning
+            git config --global user.email "k8s-values-updater@mailinator.com"
+            git config --global user.name "k8s-values-updater"
+            git diff
+            git add .
+            git commit -m "changing APPLICATION-NAME image tag value for live"
+            git push
+
+  checkmarx-pr:
+    <<: *checkmarx_docker
+    steps:
+      - run:
+          name: Comparing vulnerabilities
+          command: checkmarx --compare
+
+  checkmarx:
+    <<: *checkmarx_docker
+    steps:
+      - run:
+          name: Scaning stable branch
+          command: checkmarx
