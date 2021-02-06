@@ -1,18 +1,22 @@
 # YOUR APPLICATION NAME
 
+[comment]: <!-- (You need to change all `golang-template-project`to your repo name) -->
+
 > This microservice is part of Dafiti-Group project template `golang-template-project`
 and has the objective to deliver *_HERE THE PURPOSE OF THIS MICROSERVICE_*
 
-You are brand new here? so read this files:
+You are brand new here? so read these files:
 
-- How to configure your new microservice in `argo charts circle-ci` [HERE](./docs/CONFIG-CICD.md)
-- How to update `terraform` templates in `OPS` [HERE](./docs/CONFIG-OPS.md)
+1. How to configure your new microservice in `argo and charts` [HERE](./docs/CONFIG-CHART-AND-ARGO.md)
+1. How to update `terraform` templates in `OPS` [HERE](./docs/CONFIG-OPS.md)
+1. How to validate `circle ci` steps [HERE](./docs/CONFIG-CICD.md)
+1. Using vscode devcontainer to development [HERE](./docs/VSCODE.md)
 
 ___
 
 ## Argo Deployer: status by the environment
 
-> The badges information to update the links below is placed in Argo application information
+> The badges information to update the links below are placed in Argo application information
 
 - Dashboard: [https://argocd.dafiti.la](https://argocd.dafiti.la) and login with google SSO
 - live:
@@ -29,6 +33,8 @@ This information is split into two different places as below:
 [Charts](https://github.com/dafiti-group/charts)
 and
 [Argo](https://github.com/dafshowediti-group/argo) repositories.
+
+
 
 *__Cluster resources and limits__* are placed in
 [Charts repo in values.yaml file](https://github.com/dafiti-group/charts/blob/master/charts/APPLICATION-NAME/values.yaml)
