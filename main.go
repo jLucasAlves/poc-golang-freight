@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dafiti-group/microservice/configs"
+	"github.com/dafiti-group/golang-template-project/configs"
 )
 
 func main() {

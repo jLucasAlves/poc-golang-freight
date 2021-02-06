@@ -32,8 +32,8 @@ workflows:
               only:
                 - master
       # # Static Analisys
-      # - sonarqube:
-      #     context: SONAR
+      - sonarqube:
+          context: SONAR
       # Tests step
       - tests:
           context: TESTS
@@ -42,7 +42,7 @@ workflows:
           context: BUILD_AND_PUSH
           requires:
             - tests
-            # - sonarqube
+            - sonarqube
             - checkmarx
       # Deploy to QA
       - deploy-to-qa:
@@ -139,14 +139,15 @@ jobs:
       - run:
           name: Commit change image tag into qa directory
           command: |
-            cd argo/clusters/eks-qa-dafiti-latam/apps <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<change the path to file of your application here and remove this warning
+            cd argo/clusters/eks-qa-dafiti-latam/apps
             IMAGE="tag: \"$(echo ${CIRCLE_SHA1} | head -c7)\""
-            sed -Ei "s|tag: \"[a-z0-9]+\"|${IMAGE}|" APPLICATION-NAME.yaml <<<<<<<<<<<<<<<<<<change the file name of your application here and remove this warning
+            CONFIG_FILE=$(echo "${CIRCLE_PROJECT_REPONAME}.yaml")
+            sed -Ei "s|tag: \"[a-z0-9]+\"|${IMAGE}|" ${CONFIG_FILE}
             git config --global user.email "k8s-values-updater@mailinator.com"
             git config --global user.name "k8s-values-updater"
             git diff
             git add .
-            git commit -m "changing APPLICATION-NAME image tag value for qa"
+            git commit -m "changing ${CIRCLE_PROJECT_REPONAME} image tag value for qa"
             git push
 
   # Deploy to live
@@ -160,14 +161,15 @@ jobs:
       - run:
           name: Commit change image tag into live directory
           command: |
-            cd argo/clusters/eks-live-dafiti-latam/apps/ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<change the path to file of your application here and remove this warning
+            cd argo/clusters/eks-live-dafiti-latam/apps/
             IMAGE="tag: \"$(echo ${CIRCLE_SHA1} | head -c7)\""
-            sed -Ei "s|tag: \"[a-z0-9]+\"|${IMAGE}|" APPLICATION-NAME.yaml <<<<<<<<<<<<<<<<<<change the file name of your application here and remove this warning
+            CONFIG_FILE=$(echo "${CIRCLE_PROJECT_REPONAME}.yaml")
+            sed -Ei "s|tag: \"[a-z0-9]+\"|${IMAGE}|" ${CONFIG_FILE}
             git config --global user.email "k8s-values-updater@mailinator.com"
             git config --global user.name "k8s-values-updater"
             git diff
             git add .
-            git commit -m "changing APPLICATION-NAME image tag value for live"
+            git commit -m "changing ${CIRCLE_PROJECT_REPONAME} image tag value for live"
             git push
 
   checkmarx-pr:

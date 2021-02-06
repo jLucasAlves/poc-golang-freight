@@ -1,8 +1,8 @@
 package configs
 
 import (
-	"dafiti-group/microservice/controllers"
-	"dafiti-group/microservice/middlewares"
+	"github.com/dafiti-group/golang-template-project/controllers"
+	"github.com/dafiti-group/golang-template-project/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
