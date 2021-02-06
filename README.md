@@ -1,4 +1,4 @@
-# YOUR APPLICATION NAME
+# Golang Template Project
 
 [comment]: <!-- (You need to change all `golang-template-project`to your repo name) -->
 
@@ -20,9 +20,9 @@ ___
 
 - Dashboard: [https://argocd.dafiti.la](https://argocd.dafiti.la) and login with google SSO
 - live:
-  - [![LIVE Build Status]()]()
+  - [![LIVE Build Status](https://argocd.dafiti.la/api/badge?name=golang-template-project-br-live&revision=true)](https://argocd.dafiti.la/api/badge?name=golang-template-project-br-live&revision=true)
 - QA:
-  - [![QA Build Status]()]()
+  - [![QA Build Status](https://argocd.dafiti.la/api/badge?name=golang-template-project-br-qa&revision=true)](https://argocd.dafiti.la/api/badge?name=golang-template-project-br-qa&revision=true)
 
 ___
 
@@ -37,13 +37,13 @@ and
 
 
 *__Cluster resources and limits__* are placed in
-[Charts repo in values.yaml file](https://github.com/dafiti-group/charts/blob/master/charts/APPLICATION-NAME/values.yaml)
+[Charts repo in values.yaml file](https://github.com/dafiti-group/charts/blob/master/charts/golang-template-project/values.yaml)
 
 *__Live environmnet__* are placed in
-[argo APPLICATION-NAME.yaml](https://github.com/dafiti-group/argo/blob/master/clusters/eks-live-dafiti-latam/apps/APPLICATION-NAME.yaml)
+[argo golang-template-project.yaml](https://github.com/dafiti-group/argo/blob/master/clusters/eks-live-dafiti-latam/apps/golang-template-project.yaml)
 
 *__QA environmnet__* are placed in
-[argo APPLICATION-NAME.yaml](https://github.com/dafiti-group/argo/blob/master/clusters/eks-qa-dafiti-latam/apps/APPLICATION-NAME.yaml)
+[argo golang-template-project.yaml](https://github.com/dafiti-group/argo/blob/master/clusters/eks-qa-dafiti-latam/apps/golang-template-project.yaml)
 
 ___
 
@@ -57,11 +57,11 @@ The deployment is automatic by `Circle-CI` so, the flow of this project is:
 ### Available hosts
 
 - live:
-  - https://APPLICATION-NAME.eks.pub.live.dafiti.io
-  - https://APPLICATION-NAME.eks.priv.live.dafiti.local
+  - https://golang-template-project.eks.pub.live.dafiti.io
+  - https://golang-template-project.eks.priv.live.dafiti.local
 - qa:
-  - https://APPLICATION-NAME.eks.pub.qa.dafiti.io
-  - https://APPLICATION-NAME.eks.priv.qa.dafiti.local
+  - https://golang-template-project.eks.pub.qa.dafiti.io
+  - https://golang-template-project.eks.priv.qa.dafiti.local
 
 ### Helper URLs
 
@@ -73,10 +73,10 @@ The deployment is automatic by `Circle-CI` so, the flow of this project is:
 
 ___
 
-## Development
+## Development (outside dev-container VScode)
 
 The requirement to use this repo is `docker` and `docker-compose >=v1.27`, if you need
-to install this plugin, follow this steps:
+to install this plugin, follow these steps:
 
 - install [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - install [Docker compose](https://docs.docker.com/compose/install/)
