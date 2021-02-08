@@ -5,11 +5,11 @@ ___
 ## Fisrt step: handle chart repo
 
 First clone [https://github.com/dafiti-group/charts](https://github.com/dafiti-group/charts)
-and create a new branch from master like `including-MY-NEW-PROJECT-REPO-NAME` and duplicate the folder
-`golang-template-project` and rename with the name of your repository
+and create a new branch from master like `including-APPLICATION-REPO-NAME` and duplicate the folder
+`golang-template-project` and rename with **__APPLICATION-REPO-NAME__**
 
 ![Image example](./assets/charts-folder-path.png)\
-__figure 1: example of folder with project repo name__
+__figure 1: example of folder with APPLICATION-REPO-NAME__
 
 Inside this folder you will find the follow files:
 
@@ -19,7 +19,7 @@ Inside this folder you will find the follow files:
 - values.yaml
 
 You need to **__find and replace__** `golang-template-project` inside all those files
-and change to **__YOUR-REPO-NAME__**  in all `*.yaml` files.\
+and change to **__APPLICATION-REPO-NAME__**  in all `*.yaml` files.\
 In the `values.yaml` file you will find all shared resources used in the cluster.
 This file keeps all values that are common between live and qa environmnets and
 all other configurations that are unique for a environment will be explained in
@@ -39,17 +39,17 @@ and duplicate the files (to the same folder):
 - `clusters/eks-qa-dafiti-latam/apps/golang-template-project.yaml`
 - `clusters/eks-live-dafiti-latam/apps/golang-template-project.yaml`
 
-Rename then with the name of you application repo name and inside
+Rename then with the name of *APPLICATION-REPO-NAME* and inside
 the new files, find and replace all `golang-template-project` to
 the name of your application repo name and "*__voila__*".
 
 Inside of these files, you will find all exclusive values for
-an especific environment you need, and the moust important config
+a specific environment you need and the moust important config
 you must do is change the `extraEnv` and `secretEnv` values.
 
-By default, all initial config of this template are correct to run
+By default, all initial config of this template is correct to run
 your application, so when your application grows with new env vars,
-remenber to update this `yamls` file
+remember to update this `yamls` file
 
 >The argo repository does not have the need to create a new branch
 and pull requests. You can make all changes and push to master.
@@ -65,3 +65,7 @@ ___
 *__figure 3: argo live file path and file example__*
 
 >The information above is important to define the step [CONFIG-CICD.md](./CONFIG-CICD.md#L35)
+## The next step is ops repo and terraforms template [HERE](./CONFIG-OPS.md)
+
+## Back to [HOME](../README.md)
+

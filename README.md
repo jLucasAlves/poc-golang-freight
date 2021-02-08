@@ -7,10 +7,24 @@ and has the objective to deliver *_HERE THE PURPOSE OF THIS MICROSERVICE_*
 
 You are brand new here? so read these files:
 
+1. How do I use this repository as base project? Follow the steps [HERE](./docs/USING-THIS-PROJECT-AS-BASE.md)
 1. How to configure your new microservice in `argo and charts` [HERE](./docs/CONFIG-CHART-AND-ARGO.md)
 1. How to update `terraform` templates in `OPS` [HERE](./docs/CONFIG-OPS.md)
 1. How to validate `circle ci` steps [HERE](./docs/CONFIG-CICD.md)
-1. Using vscode devcontainer to development [HERE](./docs/VSCODE.md)
+1. How to adjust my application configurations [HERE](./docs/CONFIG-MS.md)
+1. Using VScode devcontainer to development [HERE](./docs/VSCODE.md)
+
+___
+
+## Microservice chart mapping
+
+This template project does not have an chart deployed in
+[Dafiti Group template repo](https://github.com/dafiti-group/diagrams)
+as an exemple, but you must create a draw with the integrations of
+your new ms to help team workers to understand the meaning of this
+application.
+
+Plese, take a time and read this [DOCUMENTATION](./docs/CONFIG-DIAGRAMS.md)
 
 ___
 
