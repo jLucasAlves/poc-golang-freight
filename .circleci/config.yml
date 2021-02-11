@@ -5,7 +5,6 @@ orbs:
 
 commands:
   ecr-build-push: aws-ecr/build-and-push-image
-  login-docker-dafiti: echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin
 
 checkmarx_docker: &checkmarx_docker
   environment:
@@ -42,7 +41,9 @@ workflows:
             - HUB_DOCKER
       # Build and push image
       - build-and-push:
-          context: BUILD_AND_PUSH
+          context:
+            - BUILD_AND_PUSH
+            - HUB_DOCKER
           requires:
             - tests
             - sonarqube
@@ -85,7 +86,9 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
           version: 19.03.13
-      - login-docker-dafiti
+      - run:
+          name: Login docker dafiti to get dafiti.local.crt
+          command: echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin
       - run:
           name: Create network
           # Circle is acting up, it's drowing error if the network exists and if it exists
@@ -123,7 +126,9 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
           version: 19.03.13
-      - login-docker-dafiti
+      - run:
+          name: Login docker dafiti to get dafiti.local.crt
+          command: echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin
       - run:
           name: Generate rev.txt
           command: git show -s --format="%ai %H %s %aN" HEAD > rev.txt
