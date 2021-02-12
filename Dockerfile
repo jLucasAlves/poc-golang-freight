@@ -12,9 +12,17 @@ RUN update-ca-certificates
 FROM base as vscodedevcontainer
 ARG EXTERNAL_USERGROUP=1001
 ARG EXTERNAL_USERID=1001
+ENV BASH_FILE=/home/vscode/.bash_profile
 RUN echo "uid: ${EXTERNAL_USERID} and gid: ${EXTERNAL_USERGROUP}"
 RUN apk add --no-cache openssh
 RUN addgroup -S vscode -g ${EXTERNAL_USERGROUP} && adduser -S vscode -u ${EXTERNAL_USERID} -G vscode
+RUN mv /etc/profile.d/color_prompt /etc/profile.d/color_prompt.sh
+USER vscode
+COPY .devcontainer/.profile /home/vscode/
+RUN mkdir -p /tmp/gotools && cd /tmp/gotools && go mod init tmp/tools
+COPY .devcontainer/go-tools-install.sh /tmp/gotools
+RUN cd /tmp/gotools && sh go-tools-install.sh && rm go-tools-install.sh
+
 
 # this layer is reponsable to execute tests in cicle-ci
 FROM base as ci
