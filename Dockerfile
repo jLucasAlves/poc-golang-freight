@@ -18,7 +18,6 @@ RUN apk add --no-cache openssh
 RUN addgroup -S vscode -g ${EXTERNAL_USERGROUP} && adduser -S vscode -u ${EXTERNAL_USERID} -G vscode
 RUN mv /etc/profile.d/color_prompt /etc/profile.d/color_prompt.sh
 USER vscode
-COPY .devcontainer/.profile /home/vscode/
 RUN mkdir -p /tmp/gotools && cd /tmp/gotools && go mod init tmp/tools
 COPY .devcontainer/go-tools-install.sh /tmp/gotools
 RUN cd /tmp/gotools && sh go-tools-install.sh && rm go-tools-install.sh

@@ -18,10 +18,19 @@ services:
     #
     build:
       target: "vscodedevcontainer"
+      # to generate devcontainer with same credentials of your local machine
+      # please check in your terminal with comand:
+      # id -u for EXTERNAL_USERGROUP and set below
+      # id -g for EXTERNAL_USERID and set below
+      # the default value is 1001 so if is different in your setup, update below
+      # args:
+      #   EXTERNAL_USERGROUP: 1001
+      #   EXTERNAL_USERID: 1001
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
       - .:/workspace:cached
       - ~/.ssh/known_hosts:/home/vscode/.ssh/known_hosts
+      - .devcontainer/.profile:/home/vscode/.profile
 
       # Uncomment the next line to use Docker from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker-compose for details.
       # - /var/run/docker.sock:/var/run/docker.sock
