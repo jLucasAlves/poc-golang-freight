@@ -167,18 +167,10 @@ jobs:
           release_scope: |
               {
                 "applications": [
-                  { "name": "Externalshop QA - BR" }
+                  { "name": "Go Template QA - BR" }
                 ],
                 "services": [
-                  { "name": "staging-externalshop.tricae.com.br" },
-                  {
-                    "name": "staging-externalshop.tricae.com.br",
-                    "scopedTo": {
-                      "applications": [
-                        { "name": "Externalshop QA - BR" }
-                      ]
-                    }
-                  }
+                  { "name": "golang-template-project.eks.qa.dafiti.local" }
                 ]
               }
 
