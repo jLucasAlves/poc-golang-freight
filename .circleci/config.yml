@@ -162,8 +162,8 @@ jobs:
             git add .
             git commit -m "changing ${CIRCLE_PROJECT_REPONAME} image tag value for qa"
             git push
-      - pipeline-feedback/create_release:
-          release_name: 'My Awesome App release (CircleCI: ${CIRCLE_JOB}/${CIRCLE_BUILD_NUM})'
+      - pipeline-feedback/send_feedback_to_instana:
+          release_name: 'My release (CircleCI: ${CIRCLE_JOB}/${CIRCLE_BUILD_NUM})'
           release_scope: |
               {
                 "applications": [
