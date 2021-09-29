@@ -8,10 +8,8 @@ commands:
   ecr-build-push: aws-ecr/build-and-push-image
 
 checkmarx_docker: &checkmarx_docker
-  environment:
-    CX_AUTO_SETUP: 1
   docker:
-    - image: 556684128444.dkr.ecr.us-east-1.amazonaws.com/checkmarx:latest
+    - image: 556684128444.dkr.ecr.us-east-1.amazonaws.com/checkmarx
       aws_auth:
         aws_access_key_id: $AWS_ECR_ACCESS_KEY_ID
         aws_secret_access_key: $AWS_ECR_SECRET_ACCESS_KEY
@@ -19,13 +17,6 @@ checkmarx_docker: &checkmarx_docker
 workflows:
   build-deploy:
     jobs:
-    # TODO: refact checkmark-pr to run only in other branchs
-      - checkmarx-pr:
-          context: CHECKMARX
-          filters:
-            branches:
-              ignore:
-                - master
       - checkmarx:
           context: CHECKMARX
           filters:
@@ -196,16 +187,9 @@ jobs:
             git commit -m "changing ${CIRCLE_PROJECT_REPONAME} image tag value for live"
             git push
 
-  checkmarx-pr:
-    <<: *checkmarx_docker
-    steps:
-      - run:
-          name: Comparing vulnerabilities
-          command: checkmarx --compare
-
   checkmarx:
     <<: *checkmarx_docker
     steps:
       - run:
-          name: Scaning stable branch
+          name: Checking pending vulnerabilities
           command: checkmarx
