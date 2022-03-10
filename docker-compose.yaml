@@ -15,6 +15,7 @@ services:
       - GOOS=linux
     volumes:
       - .:/app/
+      - go_packages:/go
 
   # include all information in test and
   # add the command to run
@@ -32,3 +33,6 @@ services:
       context: .
       target: ci
     volumes: []
+
+volumes:
+  go_packages: {}
