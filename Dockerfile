@@ -1,5 +1,5 @@
 # layer simple to only get dafiti certificat
-FROM gfgit/dafiti-certificates:latest as certs
+FROM 556684128444.dkr.ecr.us-east-1.amazonaws.com/dafiti-certificates:latest as certs
 
 # this is just a common layer to use local and builds
 FROM golang:1.15-alpine3.13 as base

@@ -1,9 +1,17 @@
 # Golang Template Project
 
+___
+
+*Issue to build local image to develop because docker `dafiti-certificates` image?*
+
+*Use this [Confluense page](https://dafiti.jira.com/l/c/C6Y6BHjW) to guide you to fix it*
+
+___
+
 [comment]: <!-- (You need to change all `golang-template-project`to your repo name) -->
 
 > This microservice is part of Dafiti-Group project template `golang-template-project`
-and has the objective to deliver *_HERE THE PURPOSE OF THIS MICROSERVICE_*
+and has the objective to deliver **HERE THE PURPOSE OF THIS MICROSERVICE**
 
 You are brand new here? so read these files:
 
@@ -48,8 +56,6 @@ This information is split into two different places as below:
 and
 [Argo](https://github.com/dafshowediti-group/argo) repositories.
 
-
-
 *__Cluster resources and limits__* are placed in
 [Charts repo in values.yaml file](https://github.com/dafiti-group/charts/blob/master/charts/golang-template-project/values.yaml)
 
@@ -71,11 +77,11 @@ The deployment is automatic by `Circle-CI` so, the flow of this project is:
 ### Available hosts
 
 - live:
-  - https://golang-template-project.eks.pub.live.dafiti.io
-  - https://golang-template-project.eks.priv.live.dafiti.local
+  - <https://golang-template-project.eks.pub.live.dafiti.io>
+  - <https://golang-template-project.eks.priv.live.dafiti.local>
 - qa:
-  - https://golang-template-project.eks.pub.qa.dafiti.io
-  - https://golang-template-project.eks.priv.qa.dafiti.local
+  - <https://golang-template-project.eks.pub.qa.dafiti.io>
+  - <https://golang-template-project.eks.priv.qa.dafiti.local>
 
 ### Helper URLs
 
