@@ -1,4 +1,4 @@
-module github.com/dafiti-group/golang-template-project
+module github.com/dafiti-group/${{values.component_id}}
 
 go 1.15
 

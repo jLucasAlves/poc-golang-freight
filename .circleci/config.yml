@@ -44,7 +44,7 @@ workflows:
           #       - qa
       - feedback-instana:
           name: feedback-instana-qa
-          service_name: golang-template-project.eks.qa.dafiti.local
+          service_name: ${{values.component_id}}.eks.qa.dafiti.local
           requires:
             - deploy-to-qa
           context:
@@ -75,7 +75,7 @@ workflows:
           #       - master
       - feedback-instana:
           name: feedback-instana-live
-          service_name: golang-template-project.eks.live.dafiti.local
+          service_name: ${{values.component_id}}.eks.live.dafiti.local
           requires:
             - deploy-to-live
           context:

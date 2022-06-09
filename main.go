@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/dafiti-group/golang-template-project/configs"
+	"github.com/dafiti-group/${{values.component_id}}/configs"
 )
 
 func main() {

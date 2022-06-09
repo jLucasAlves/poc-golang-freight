@@ -1,0 +1,3 @@
+.circleci/config.yml @dafiti-group/devxp
+.github @dafiti-group/devxp
+* @dafiti-group/${{values.owner}}
