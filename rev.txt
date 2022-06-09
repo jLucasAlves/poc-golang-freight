@@ -1,0 +1,3 @@
+### example file ####
+This file will be filled with git show command in the circle-ci context DO NOT REMOVE
+ex: 2021-02-03 18:06:15 -0300 cf5d63cefff39c2a325a1b12b9b2e1784eed5a36 jump start!!! :zap: Gritzko D. Kleiner
