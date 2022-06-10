@@ -36,14 +36,6 @@ docker-compose up app
 
 If your application is not up and running, try to double check the envs in `docker-compose.yaml` file
 
-## <<<<<<< HEAD
-
-=======
-
----
-
-> > > > > > > 61eec6cc70149bf7ab5d95d38a6cc6c65416f452
-
 ## Testing
 
 To test your application you need to run `docker-compose run --rm test`
