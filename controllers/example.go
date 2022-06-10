@@ -10,6 +10,6 @@ func Example(c *gin.Context) {
 	logrus.Info("estou aqui")
 	c.JSON(200, gin.H{
 		"status":  true,
-		"message": "Say hello for your new Golang+gin microservise template-golang (By Dafiti-group)",
+		"message": "Say hello for your new Golang+gin microservise ${{values.component_id}} (By Dafiti-group)",
 	})
 }
