@@ -20,7 +20,9 @@ To run the project locally, replace the variables with the tag `${{values.compon
   - Liveness Health: https://${{values.component_id}}.eks.live.dafiti.local/health-check/liveness
   - Readiness Health: https://${{values.component_id}}.eks.live.dafiti.local/health-check/readiness
 
-//TODO: Incluir explicaçao de setup local
+## Below is the config you need to do before execute Project
+
+- Be sure about your permissions in [THIS CONFLUENSE PAGE](https://dafiti.jira.com/wiki/spaces/DFTEC/pages/3247013947/Desenvolvimento+local+DOCKER-DAFITI)
 
 ## Development (outside dev-container VScode)
 
