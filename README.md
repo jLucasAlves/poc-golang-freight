@@ -20,6 +20,8 @@ To run the project locally, replace the variables with the tag `${{values.compon
   - Liveness Health: https://${{values.component_id}}.eks.live.dafiti.local/health-check/liveness
   - Readiness Health: https://${{values.component_id}}.eks.live.dafiti.local/health-check/readiness
 
+//TODO: Incluir explicaçao de setup local
+
 ## Development (outside dev-container VScode)
 
 The requirement to use this repo is `docker` and `docker-compose >=v1.27`, if you need

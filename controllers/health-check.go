@@ -17,7 +17,7 @@ func HealthCheckLiveness(c *gin.Context) {
 func HealthCheckReadiness(c *gin.Context) {
 	version, _ := ioutil.ReadFile("rev.txt")
 	result := healthcheck.HealthCheckerDetailed(healthcheck.ApplicationConfig{
-		Name:    "MY-APPLICATION",
+		Name:    "MY-APPLICATION", //TODO: Incluir PlaceHolder
 		Version: string(version),
 		Integrations: []healthcheck.IntegrationConfig{
 			{
