@@ -6,9 +6,19 @@
 
 ## How to execute template local
 
-Realizar replace da variavel `${{values.component_id}}` pelo nome da Aplicação.
+To run the project locally, replace the variables with the tag `${{values.component_id}}` with the name of the desired Application.
 
 ## Hosts
+
+- Local: http://localhost:8080
+  - Liveness Health: http://localhost:8080/health-check/liveness
+  - Readiness Health: http://localhost:8080/health-check/readiness
+- QA: https://${{values.component_id}}.eks.qa.dafiti.local
+  - Liveness Health: https://${{values.component_id}}.eks.qa.dafiti.local/health-check/liveness
+  - Readiness Health: https://${{values.component_id}}.eks.qa.dafiti.local/health-check/readiness
+- Production: https://${{values.component_id}}.eks.live.dafiti.local
+  - Liveness Health: https://${{values.component_id}}.eks.live.dafiti.local/health-check/liveness
+  - Readiness Health: https://${{values.component_id}}.eks.live.dafiti.local/health-check/readiness
 
 ## Development (outside dev-container VScode)
 
