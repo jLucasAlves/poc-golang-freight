@@ -1,24 +1,24 @@
-# ${{values.component_id}}
+# template-golang
 
-[![CircleCI](https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main.svg?style=svg&circle-token=95ef6b5263b43165270e49a6a8a20267dec56af0)](https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main)
+[![CircleCI](https://circleci.com/gh/dafiti-group/template-golang/tree/main.svg?style=svg&circle-token=95ef6b5263b43165270e49a6a8a20267dec56af0)](https://circleci.com/gh/dafiti-group/template-golang/tree/main)
 
 ## ${{values.description}}
 
 ## How to execute template local
 
-To run the project locally, replace the variables with the tag `${{values.component_id}}` with the name of the desired Application.
+To run the project locally, replace the variables with the tag `template-golang` with the name of the desired Application.
 
 ## Hosts
 
 - Local: http://localhost:8080
   - Liveness Health: http://localhost:8080/health-check/liveness
   - Readiness Health: http://localhost:8080/health-check/readiness
-- QA: https://${{values.component_id}}.eks.qa.dafiti.local
-  - Liveness Health: https://${{values.component_id}}.eks.qa.dafiti.local/health-check/liveness
-  - Readiness Health: https://${{values.component_id}}.eks.qa.dafiti.local/health-check/readiness
-- Production: https://${{values.component_id}}.eks.live.dafiti.local
-  - Liveness Health: https://${{values.component_id}}.eks.live.dafiti.local/health-check/liveness
-  - Readiness Health: https://${{values.component_id}}.eks.live.dafiti.local/health-check/readiness
+- QA: https://template-golang.eks.qa.dafiti.local
+  - Liveness Health: https://template-golang.eks.qa.dafiti.local/health-check/liveness
+  - Readiness Health: https://template-golang.eks.qa.dafiti.local/health-check/readiness
+- Production: https://template-golang.eks.live.dafiti.local
+  - Liveness Health: https://template-golang.eks.live.dafiti.local/health-check/liveness
+  - Readiness Health: https://template-golang.eks.live.dafiti.local/health-check/readiness
 
 ## Below is the config you need to do before execute Project
 
