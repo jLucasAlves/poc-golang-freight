@@ -1,6 +1,6 @@
 # ${{values.component_id}}
 
-[![CircleCI |<<https://circleci.com/gh/dafiti-group/>${{values.component_id}}/tree/main.svg?style=svg&circle-token=95ef6b5263b43165270e49a6a8a20267dec56af0) |<https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main> |
+[![CircleCI](<https://circleci.com/gh/dafiti-group/>${{values.component_id}}/tree/main.svg?style=svg&circle-token=95ef6b5263b43165270e49a6a8a20267dec56af0) |<https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main)
 
 ## ${{values.description}}
 
