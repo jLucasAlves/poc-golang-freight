@@ -12,7 +12,7 @@ To run the project locally, replace the variables with the tag `${{values.compon
 
 | Tool         | URL                                                                                                                                     |
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| CicleCI      | <https://app.circleci.com/pipelines/github/dafiti-group/${{values.component_id}>                                                        |
+| CicleCI      | <https://app.circleci.com/pipelines/github/dafiti-group/${{values.component_id}}>                                                       |
 | SonarCube    | <http://sonarqube.live.br.dafiti.io/dashboard?id=${{values.component_id}}>                                                              |
 | Argo QA      | <https://argocd.dafiti.la/applications/${{values.component_id}}-br-qa>                                                                  |
 | Argo Live    | <https://argocd.dafiti.la/applications/${{values.component_id}}-br-live>                                                                |
