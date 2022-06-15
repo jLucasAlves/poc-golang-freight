@@ -10,8 +10,7 @@ parameters:
     description: The commit hash to revert deployment
 # including dft org
 orbs:
-  # dft: dafiti-group/orb-standard-pipeline@1.0.0
-  dft: dafiti-group/orb-standard-pipeline@dev:first
+  dft: dafiti-group/orb-standard-pipeline@1.0.1
 # reserved filters anchors
 default_filters: &default_filters
   branches:
@@ -34,19 +33,10 @@ workflows:
     jobs:
       - dft/eks-deploy:
           name: rollback-live
-          context: [DEPLOY_LIVE, SLACK]
+          context: [TESTS, SLACK]
           rollback: <<pipeline.parameters.rollback>>
           version: <<pipeline.parameters.version>>
-          deployment_path: argo/clusters/eks-live-dafiti/apps
-          filters: *head_filters
-  security-flow:
-    when:
-      or:
-        - equal: [false, <<pipeline.parameters.rollback>>]
-    jobs:
-      - dft/checkmarx:
-          name: checkmarx
-          context: [CHECKMARX_CLOUD, SLACK]
+          deployment_path: argo/clusters/eks-live-dafiti-latam/apps
           filters: *head_filters
   deployment-flow:
     when:
@@ -97,7 +87,7 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-qa
           context: [INSTANA, DEPLOY_QA, SLACK]
-          service_name: ${{values.component_id}}-project.eks.qa.dafiti.local
+          service_name: ${{values.component_id}}.eks.qa.dafiti.local
           requires: [deploy-to-qa]
       # TODO: when the staging cluster is available, uncoment the section below
       # - approval:
@@ -113,7 +103,7 @@ workflows:
       # - dft/instana-notify:
       #     name: feedback-instana-staging
       #     context: [INSTANA, DEPLOY_STAGING, SLACK]
-      #     service_name: ${{values.component_id}}-project.eks.stg.dafiti.local
+      #     service_name: ${{values.component_id}}.eks.stg.dafiti.local
       #     requires: [promote-qa-to-staging]
       # =========================================================================
       - dft/github-approve:
@@ -146,6 +136,6 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-live
           context: [INSTANA, DEPLOY_LIVE, SLACK]
-          service_name: ${{values.component_id}}-project.eks.live.dafiti.local
+          service_name: ${{values.component_id}}.eks.live.dafiti.local
           requires: [promote-homolog-to-live]
       # ===============================================================================================================
