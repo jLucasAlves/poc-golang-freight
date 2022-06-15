@@ -1,12 +1,11 @@
 # ${{values.component_id}}
 
-[![CircleCI](<https://circleci.com/gh/dafiti-group/>${{values.component_id}}/tree/main.svg?style=svg&circle-token=95ef6b5263b43165270e49a6a8a20267dec56af0) |<https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main)
-
+[![CircleCI](https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main.svg?style=svg)](https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main) [![Go Reference](https://pkg.go.dev/badge/go.dev/doc/.svg)](https://go.dev/doc/)
 ## ${{values.description}}
 
 ## How to execute template local
 
-To run the project locally, replace the variables with the tag `${{values.component_id}}` with the name of the desired Application.
+To run the project locally, replace the variables with the tag `${{values.component_id}}` with the name of the desired Application and `${{values.description}}` with description application.
 
 ## Links devops Tools
 
