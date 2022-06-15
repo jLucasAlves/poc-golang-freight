@@ -45,7 +45,7 @@ To run the project locally, replace the variables with the tag `${{values.compon
 The requirement to use this repo is `docker` and `docker-compose >=v1.27`, if you need
 to install this plugin, follow these steps:
 
-- install [Docker](]https://docs.docker.com/engine/install/ubuntu/)
+- install [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - install [Docker compose](https://docs.docker.com/compose/install/)
 
 and all you need to run is...
