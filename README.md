@@ -1,6 +1,7 @@
 # ${{values.component_id}}
 
 [![CircleCI](https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main.svg?style=shield&circle-token=${{values.token_badge}})](https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main) [![Go Reference](https://pkg.go.dev/badge/go.dev/doc/.svg)](https://go.dev/doc/)
+
 ## ${{values.description}}
 
 ## How to execute template local
