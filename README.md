@@ -1,12 +1,13 @@
-# template-golang
+# Template-golang
 
 [![CircleCI](https://circleci.com/gh/dafiti-group/template-golang/tree/main.svg?style=svg)](https://circleci.com/gh/dafiti-group/template-golang/tree/main)
 
-## ${{values.description}}
+[![Go Reference](https://pkg.go.dev/badge/go.dev/doc/.svg)](https://pkg.go.dev/go.dev/doc/)
+## Sample application for Go lang framework
 
 ## How to execute template local
 
-To run the project locally, replace the variables with the tag `template-golang` with the name of the desired Application.
+To run the project locally, replace the variables with the tag `${{values.component_id}}` with the name of the desired Application and `${{values.description}}` with description application.
 
 ## Links devops Tools
 
