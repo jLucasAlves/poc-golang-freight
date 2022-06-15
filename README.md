@@ -1,6 +1,6 @@
 # template-golang
 
-[![CircleCI](https://circleci.com/gh/dafiti-group/golang-template-project/tree/main.svg?style=svg)](https://circleci.com/gh/dafiti-group/golang-template-project/tree/main)
+[![CircleCI](https://circleci.com/gh/dafiti-group/template-golang/tree/main.svg?style=svg)](https://circleci.com/gh/dafiti-group/template-golang/tree/main)
 
 ## ${{values.description}}
 
@@ -12,12 +12,12 @@ To run the project locally, replace the variables with the tag `template-golang`
 
 | Tool         | URL                                                                                                                            |
 | :----------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| CicleCI      | <https://app.circleci.com/pipelines/github/dafiti-group/${{values.component_id}>                                               |
-| SonarCube    | <http://sonarqube.live.br.dafiti.io/dashboard?id=golang-template>                                                              |
-| Argo QA      | <https://argocd.dafiti.la/applications/golang-template-br-qa>                                                                  |
-| Argo Live    | <https://argocd.dafiti.la/applications/golang-template-br-live>                                                                |
-| GrayLog QA   | <https://graylog.qa.dafiti.local/search?q=kubernetes_namespace_name%3A%22golang-template%22&rangetype=relative&relative=300>   |
-| GrayLog Live | <https://graylog.live.dafiti.local/search?q=kubernetes_namespace_name%3A%22golang-template%22&rangetype=relative&relative=300> |
+| CicleCI      | <https://app.circleci.com/pipelines/github/dafiti-group/template-golang>                                                       |
+| SonarCube    | <http://sonarqube.live.br.dafiti.io/dashboard?id=template-golang>                                                              |
+| Argo QA      | <https://argocd.dafiti.la/applications/template-golang-br-qa>                                                                  |
+| Argo Live    | <https://argocd.dafiti.la/applications/template-golang-br-live>                                                                |
+| GrayLog QA   | <https://graylog.qa.dafiti.local/search?q=kubernetes_namespace_name%3A%22template-golang%22&rangetype=relative&relative=300>   |
+| GrayLog Live | <https://graylog.live.dafiti.local/search?q=kubernetes_namespace_name%3A%22template-golang%22&rangetype=relative&relative=300> |
 | Instana      | <https://apm-dafiti.instana.io/#/services>                                                                                     |
 
 ## Hosts
@@ -28,13 +28,13 @@ To run the project locally, replace the variables with the tag `template-golang`
 | Local      | Liveness Health  | <http://localhost:8080/health-check/liveness>                          |
 | Local      | Readiness Health | <http://localhost:8080/health-check/readiness>                         |
 |            |                  |                                                                        |
-| QA         | root             | <https://golang-template.eks.qa.dafiti.local>                          |
-| QA         | Liveness Health  | <https://golang-template.eks.qa.dafiti.local/health-check/liveness>    |
-| QA         | Readiness Health | <https://golang-template.eks.qa.dafiti.local/health-check/readiness>   |
+| QA         | root             | <https://template-golang.eks.qa.dafiti.local>                          |
+| QA         | Liveness Health  | <https://template-golang.eks.qa.dafiti.local/health-check/liveness>    |
+| QA         | Readiness Health | <https://template-golang.eks.qa.dafiti.local/health-check/readiness>   |
 |            |                  |                                                                        |
-| Production | root             | <https://golang-template.eks.live.dafiti.local>                        |
-| Production | Liveness Health  | <https://golang-template.eks.live.dafiti.local/health-check/liveness>  |
-| Production | Readiness Health | <https://golang-template.eks.live.dafiti.local/health-check/readiness> |
+| Production | root             | <https://template-golang.eks.live.dafiti.local>                        |
+| Production | Liveness Health  | <https://template-golang.eks.live.dafiti.local/health-check/liveness>  |
+| Production | Readiness Health | <https://template-golang.eks.live.dafiti.local/health-check/readiness> |
 
 ## Below is the config you need to do before execute Project
 
