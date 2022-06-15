@@ -1,11 +1,14 @@
 package middlewares
 
 import (
+	"io/ioutil"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
+
+var version, _ = ioutil.ReadFile("rev.txt")
 
 // AccessMiddleware is responsable to use logrus in gin log interface requests
 func AccessMiddleware() gin.HandlerFunc {
@@ -21,12 +24,15 @@ func AccessMiddleware() gin.HandlerFunc {
 
 		entry := logrus.WithFields(logrus.Fields{
 			"duration": duration.Milliseconds(),
+			"version":  string(version),
 			"method":   c.Request.Method,
 			"path":     c.Request.RequestURI,
 			"status":   c.Writer.Status(),
-			"referrer": c.Request.Referer(),
+
 			// TODO: inject new request id interface
-			"request_id": c.Writer.Header().Get("Request-Id"),
+			"requestId":     c.Writer.Header().Get("Request-Id"),
+			"correlationId": c.Writer.Header().Get("Correlation-Id"),
+			"headers":       c.Writer.Header(),
 		})
 
 		if c.Writer.Status() >= 500 {

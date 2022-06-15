@@ -18,7 +18,7 @@ func init() {
 		},
 	})
 	if os.Getenv("ENVIRONMENT") == "live" {
-		logrus.SetLevel(logrus.WarnLevel)
+		logrus.SetLevel(logrus.InfoLevel)
 	} else {
 		logrus.SetReportCaller(true)
 		logrus.SetLevel(logrus.DebugLevel)

@@ -1,6 +1,6 @@
 # template-golang
 
-[![CircleCI](https://circleci.com/gh/dafiti-group/template-golang/tree/main.svg?style=svg&circle-token=95ef6b5263b43165270e49a6a8a20267dec56af0)](https://circleci.com/gh/dafiti-group/template-golang/tree/main)
+[![CircleCI](<https://circleci.com/gh/dafiti-group/>${{values.component_id}}/tree/main.svg?style=svg&circle-token=95ef6b5263b43165270e49a6a8a20267dec56af0) |<https://circleci.com/gh/dafiti-group/${{values.component_id}}/tree/main)
 
 ## ${{values.description}}
 
@@ -8,17 +8,33 @@
 
 To run the project locally, replace the variables with the tag `template-golang` with the name of the desired Application.
 
+## Links devops Tools
+
+| Tool         | URL                                                                                                                                     |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| CicleCI      | <https://app.circleci.com/pipelines/github/dafiti-group/${{values.component_id}>                                                        |
+| SonarCube    | <http://sonarqube.live.br.dafiti.io/dashboard?id=${{values.component_id}}>                                                              |
+| Argo QA      | <https://argocd.dafiti.la/applications/${{values.component_id}}-br-qa>                                                                  |
+| Argo Live    | <https://argocd.dafiti.la/applications/${{values.component_id}}-br-live>                                                                |
+| GrayLog QA   | <https://graylog.qa.dafiti.local/search?q=kubernetes_namespace_name%3A%22${{values.component_id}}%22&rangetype=relative&relative=300>   |
+| GrayLog Live | <https://graylog.live.dafiti.local/search?q=kubernetes_namespace_name%3A%22${{values.component_id}}%22&rangetype=relative&relative=300> |
+| Instana      | <https://apm-dafiti.instana.io/#/services>                                                                                              |
+
 ## Hosts
 
-- Local: http://localhost:8080
-  - Liveness Health: http://localhost:8080/health-check/liveness
-  - Readiness Health: http://localhost:8080/health-check/readiness
-- QA: https://template-golang.eks.qa.dafiti.local
-  - Liveness Health: https://template-golang.eks.qa.dafiti.local/health-check/liveness
-  - Readiness Health: https://template-golang.eks.qa.dafiti.local/health-check/readiness
-- Production: https://template-golang.eks.live.dafiti.local
-  - Liveness Health: https://template-golang.eks.live.dafiti.local/health-check/liveness
-  - Readiness Health: https://template-golang.eks.live.dafiti.local/health-check/readiness
+| Env        | Path             | URL                                                                             |
+| :--------- | :--------------- | :------------------------------------------------------------------------------ |
+| Local      | root             | <http://localhost:8080>                                                         |
+| Local      | Liveness Health  | <http://localhost:8080/health-check/liveness>                                   |
+| Local      | Readiness Health | <http://localhost:8080/health-check/readiness>                                  |
+|            |                  |                                                                                 |
+| QA         | root             | <https://${{values.component_id}}.eks.qa.dafiti.local>                          |
+| QA         | Liveness Health  | <https://${{values.component_id}}.eks.qa.dafiti.local/health-check/liveness>    |
+| QA         | Readiness Health | <https://${{values.component_id}}.eks.qa.dafiti.local/health-check/readiness>   |
+|            |                  |                                                                                 |
+| Production | root             | <https://${{values.component_id}}.eks.live.dafiti.local>                        |
+| Production | Liveness Health  | <https://${{values.component_id}}.eks.live.dafiti.local/health-check/liveness>  |
+| Production | Readiness Health | <https://${{values.component_id}}.eks.live.dafiti.local/health-check/readiness> |
 
 ## Below is the config you need to do before execute Project
 

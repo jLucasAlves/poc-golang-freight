@@ -10,7 +10,7 @@ import (
 // GetServer returns the default application configuration
 func GetServer() *gin.Engine {
 	server := gin.New()
-
+	initAPM(server)
 	// default middlewares section
 	server.Use(middlewares.AccessMiddleware())
 	server.Use(gin.Recovery())
