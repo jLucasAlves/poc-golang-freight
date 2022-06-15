@@ -1,8 +1,6 @@
 # Template-golang
 
-[![CircleCI](https://circleci.com/gh/dafiti-group/template-golang/tree/main.svg?style=svg)](https://circleci.com/gh/dafiti-group/template-golang/tree/main)
-
-[![Go Reference](https://pkg.go.dev/badge/go.dev/doc/.svg)](https://pkg.go.dev/go.dev/doc/)
+[![CircleCI](https://circleci.com/gh/dafiti-group/template-golang/tree/main.svg?style=svg)](https://circleci.com/gh/dafiti-group/template-golang/tree/main) [![Go Reference](https://pkg.go.dev/badge/go.dev/doc/.svg)](https://go.dev/doc/)
 ## Sample application for Go lang framework
 
 ## How to execute template local
