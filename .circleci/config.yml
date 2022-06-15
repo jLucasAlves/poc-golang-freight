@@ -87,7 +87,7 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-qa
           context: [INSTANA, DEPLOY_QA, SLACK]
-          service_name: ${{values.component_id}}.eks.qa.dafiti.local
+          service_name: golang-template.eks.qa.dafiti.local
           requires: [deploy-to-qa]
       # TODO: when the staging cluster is available, uncoment the section below
       # - approval:
@@ -103,7 +103,7 @@ workflows:
       # - dft/instana-notify:
       #     name: feedback-instana-staging
       #     context: [INSTANA, DEPLOY_STAGING, SLACK]
-      #     service_name: ${{values.component_id}}.eks.stg.dafiti.local
+      #     service_name: golang-template.eks.stg.dafiti.local
       #     requires: [promote-qa-to-staging]
       # =========================================================================
       - dft/github-approve:
@@ -136,6 +136,6 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-live
           context: [INSTANA, DEPLOY_LIVE, SLACK]
-          service_name: ${{values.component_id}}.eks.live.dafiti.local
+          service_name: golang-template.eks.live.dafiti.local
           requires: [promote-homolog-to-live]
       # ===============================================================================================================
