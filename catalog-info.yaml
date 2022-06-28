@@ -28,9 +28,9 @@ metadata:
       title: ArgoCD
       icon: cloud
   tags:
-    - ${{values.system | dump}}
-    - ${{values.type | dump}}
-    - ${{values.lifecycle | dump}}
+  #  - ${{values.system | dump}}
+  #  - ${{values.type | dump}}
+  #  - ${{values.lifecycle | dump}}
     - "golang"
 spec:
   system: ${{values.system | dump}}
