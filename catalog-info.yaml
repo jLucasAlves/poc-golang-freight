@@ -31,7 +31,7 @@ metadata:
     - #${{values.system | dump}}
     - #${{values.type | dump}}
     - #${{values.lifecycle | dump}}
-    - "golang"
+    - golang
 spec:
   system: "sT" #${{values.system | dump}}
   type: "tT" #${{values.type | dump}}
