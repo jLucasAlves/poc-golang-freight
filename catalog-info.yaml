@@ -28,10 +28,10 @@ metadata:
       title: ArgoCD
       icon: cloud
   tags:
-    - golang
     - ${{values.system | dump}}
     - ${{values.type | dump}}
     - ${{values.lifecycle | dump}}
+    - "golang"
 spec:
   system: ${{values.system | dump}}
   type:  ${{values.type | dump}}
