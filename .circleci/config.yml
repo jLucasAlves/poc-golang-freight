@@ -12,15 +12,18 @@ parameters:
 orbs:
   dft: dafiti-group/orb-standard-pipeline@1.0.1
 # reserved filters anchors
-default_filters: &default_filters
+test_filters: &test_filters
   branches:
     only: [/^feature.*/, /^hotfix.*/]
+deployment_filters: &deployment_filters
+  branches:
+    only: [/^release.*/, /^hotfix.*/]
 head_filters: &head_filters
   branches:
     only: [master, main]
 release_filters: &release_filters
   branches:
-    only: [/^feature.*/]
+    only: [/^release.*/]
 hotfix_filters: &hotfix_filters
   branches:
     only: [/^hotfix.*/]
@@ -47,11 +50,11 @@ workflows:
       - dft/unit-test:
           name: unit-test
           context: [TESTS, SLACK, BUILD_AND_PUSH]
-          filters: *default_filters
+          filters: *test_filters
       - dft/sonarqube:
           name: sonarqube
           context: [SONAR, SLACK]
-          filters: *default_filters
+          filters: *test_filters
       # ===============================================================================================================
       # releases & hotfixes ===========================================================================================
       - dft/hold-slack:
@@ -77,7 +80,7 @@ workflows:
       - dft/ecr-build-and-push:
           name: ecr-build-and-push
           context: [SLACK, TESTS, BUILD_AND_PUSH]
-          filters: *default_filters
+          filters: *deployment_filters
           requires: [unit-test, sonarqube, approve-to-qa, start-to-qa]
       - dft/eks-deploy:
           name: deploy-to-qa
