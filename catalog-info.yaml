@@ -29,7 +29,7 @@ metadata:
       icon: cloud
     - url: https://app.circleci.com/pipelines/github/dafiti-group/${{values.component_id}}
       title: CircleCI
-      icon: circle
+      icon: donut_small
   tags:
     - ${{values.system | dump}}
     - ${{values.type | dump}}
