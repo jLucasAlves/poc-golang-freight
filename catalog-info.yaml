@@ -20,13 +20,16 @@ metadata:
       icon: Website
     - url: https://grafana.dafiti.io
       title: Dashboard
-      icon: dashboard      
+      icon: dashboard
     - url: https://alerts.dafiti.io
       title: Alerts
-      icon: alert 
+      icon: alert
     - url: https://argocd.dafiti.io/applications/${{values.env + "-" + values.component_id}}?resource=
       title: ArgoCD
       icon: cloud
+    - url: https://app.circleci.com/pipelines/github/dafiti-group/${{values.component_id}}
+      title: CircleCI
+      icon: circle
   tags:
     - ${{values.system | dump}}
     - ${{values.type | dump}}
@@ -36,4 +39,4 @@ spec:
   system: ${{values.system | dump}}
   type: ${{values.type | dump}}
   lifecycle: ${{values.lifecycle | dump}}
-  owner: ${{values.owner | dump}} 
+  owner: ${{values.repo_owner | dump}}
