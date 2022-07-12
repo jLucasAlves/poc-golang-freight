@@ -1,14 +1,27 @@
-# TITLE
+> __*This file uses lightweight markup language [Markdown](https://guides.github.com/features/mastering-markdown/)*__
+## JIRA Issue
+<!-- ex: [JIRA-0000](https://dafiti.jira.com/browse/[JIRA-0000]) -->
 
-## JIRA ISSUE
-
-What this PR does
-
-- [ ] New features
+## What kind of change does this PR introduce?
+<!-- Please check the one that applies to this PR using "x". -->
 - [ ] Bugfix
-- [ ] Hotfix
-- [ ] Others
+- [ ] Feature
+- [ ] Code style update (formatting)
+- [ ] Refactoring (no functional changes)
+- [ ] CI related changes
+- [ ] Other... Please describe:
 
-> Short description about this changes below:
+## What is the current behavior?
+<!-- Please describe the current behavior that you are modifying or linking to a relevant issue. -->
 
----
+## What is the new behavior?
+<!-- Please describe the current desired behavior that you are modifying or linking to a relevant issue. -->
+
+## Does this PR introduce a new API versioning or breaking change?
+
+- [ ] Yes
+- [ ] No
+
+<!-- If this PR contains a breaking change, please describe the impact and migration path for existing applications below. -->
+
+## Other information

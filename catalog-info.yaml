@@ -1,0 +1,42 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{values.component_id | dump}}
+  {%- if values.description %}
+  description: ${{values.description | dump}}
+  {%- endif %}
+  annotations:
+    github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
+    backstage.io/techdocs-ref: dir:.
+    argocd/app-name: ${{values.env + "-" + values.component_id}}
+    backstage.io/kubernetes-id: ${{values.component_id | dump}}
+    sonarqube.org/project-key: ${{values.component_id | dump}}
+    grafana/tag-selector: "kubernetes"
+    prometheus.io/rule: devxp-tech-alerts
+    prometheus.io/alert: all
+  links:
+    - url: https://${{values.component_id}}.dafiti.io
+      title: Website
+      icon: Website
+    - url: https://grafana.dafiti.io
+      title: Dashboard
+      icon: dashboard
+    - url: https://alerts.dafiti.io
+      title: Alerts
+      icon: alert
+    - url: https://argocd.dafiti.io/applications/${{values.env + "-" + values.component_id}}?resource=
+      title: ArgoCD
+      icon: cloud
+    - url: https://app.circleci.com/pipelines/github/dafiti-group/${{values.component_id}}
+      title: CircleCI
+      icon: donut_small
+  tags:
+    - ${{values.system | dump}}
+    - ${{values.type | dump}}
+    - ${{values.lifecycle | dump}}
+    - "golang"
+spec:
+  system: ${{values.system | dump}}
+  type: ${{values.type | dump}}
+  lifecycle: ${{values.lifecycle | dump}}
+  owner: ${{values.repo_owner | dump}}
