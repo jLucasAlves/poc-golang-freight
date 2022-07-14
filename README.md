@@ -28,9 +28,9 @@ To run the project locally, replace the variables with the tag `${{values.compon
 | Local      | Liveness Health  | <http://localhost:8080/health-check/liveness>                                   |
 | Local      | Readiness Health | <http://localhost:8080/health-check/readiness>                                  |
 |            |                  |                                                                                 |
-| QA         | root             | <https://${{values.component_id}}.eks.qa.dafiti.local>                          |
-| QA         | Liveness Health  | <https://${{values.component_id}}.eks.qa.dafiti.local/health-check/liveness>    |
-| QA         | Readiness Health | <https://${{values.component_id}}.eks.qa.dafiti.local/health-check/readiness>   |
+| QA         | root             | <https://${{values.component_id}}.eks.pub.qa.dafiti.io>                         |
+| QA         | Liveness Health  | <https://${{values.component_id}}.eks.pub.qa.dafiti.io/health-check/liveness>   |
+| QA         | Readiness Health | <https://${{values.component_id}}.eks.pub.qa.dafiti.io/health-check/readiness>  |
 |            |                  |                                                                                 |
 | Production | root             | <https://${{values.component_id}}.eks.live.dafiti.local>                        |
 | Production | Liveness Health  | <https://${{values.component_id}}.eks.live.dafiti.local/health-check/liveness>  |
