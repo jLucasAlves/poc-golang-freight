@@ -90,7 +90,7 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-qa
           context: [INSTANA, DEPLOY_QA, SLACK]
-          service_name: ${{values.component_id}}.eks.qa.dafiti.local
+          service_name: ${{values.component_id}}.qa.dafiti.local
           requires: [deploy-to-qa]
       # TODO: when the staging cluster is available, uncoment the section below
       # - approval:
