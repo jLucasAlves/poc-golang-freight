@@ -39,7 +39,7 @@ workflows:
           context: [TESTS, SLACK]
           rollback: <<pipeline.parameters.rollback>>
           version: <<pipeline.parameters.version>>
-          deployment_path: argo/clusters/eks-live-dafiti-latam/apps
+          deployment_path: argo/clusters/eks-live-dafiti/apps
           filters: *head_filters
   deployment-flow:
     when:
@@ -85,7 +85,7 @@ workflows:
       - dft/eks-deploy:
           name: deploy-to-qa
           context: [TESTS, SLACK]
-          deployment_path: argo/clusters/eks-qa-dafiti-latam/apps
+          deployment_path: argo/clusters/eks-qa-dafiti/apps
           requires: [approve-to-qa, ecr-build-and-push]
       - dft/instana-notify:
           name: feedback-instana-qa
@@ -99,7 +99,7 @@ workflows:
       #     requires: [deploy-to-qa]
       # - dft/eks-deploy:
       #     name: promote-qa-to-staging
-      #     argo_path: argo/clusters/eks-staging-dafiti-latam/apps
+      #     argo_path: argo/clusters/eks-staging-dafiti/apps
       #     context: [TESTS, SLACK]
       #     requires:
       #       - approve-to-staging
@@ -131,9 +131,9 @@ workflows:
           filters: *head_filters
       - dft/eks-promote:
           name: promote-homolog-to-live
-          # origin: argo/clusters/eks-stg-dafiti-latam/apps # uncomment when staging is up and running
-          origin: argo/clusters/eks-qa-dafiti-latam/apps
-          destiny: argo/clusters/eks-live-dafiti-latam/apps
+          # origin: argo/clusters/eks-stg-dafiti/apps # uncomment when staging is up and running
+          origin: argo/clusters/eks-qa-dafiti/apps
+          destiny: argo/clusters/eks-live-dafiti/apps
           context: [TESTS, SLACK]
           requires: [approve-deploy-live, review-open-pr-to-force-update]
       - dft/instana-notify:
