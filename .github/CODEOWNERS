@@ -1,3 +1,5 @@
 .circleci/config.yml @dafiti-group/devxp-team
 .github @dafiti-group/devxp-team
-* @dafiti-group/${{values.owner}}
+.Dockerfile @dafiti-group/devxp-team
+.docker-compose.yaml @dafiti-group/devxp-team
+* @dafiti-group/${{values.repo_owner}}
