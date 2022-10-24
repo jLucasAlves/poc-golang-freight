@@ -10,7 +10,7 @@ parameters:
     description: The commit hash to revert deployment
 # including dft org
 orbs:
-  dft: dafiti-group/orb-standard-pipeline@1.1.0
+  dft: dafiti-group/orb-standard-pipeline@1.1.1
 # reserved filters anchors
 test_filters: &test_filters
   branches:
@@ -90,12 +90,11 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-qa
           context: [INSTANA, DEPLOY_QA, SLACK]
-          service_name: ${{values.component_id}}.qa.dafiti.local
           requires: [deploy-to-qa]
       - dft/grafana-notify:
           name: grafana-notify-qa
           target_env: qa
-          context: [GRAFANA,SLACK]
+          context: [GRAFANA, SLACK]
           requires: [deploy-to-qa]
       # TODO: when the staging cluster is available, uncoment the section below
       # - approval:
@@ -111,7 +110,6 @@ workflows:
       # - dft/instana-notify:
       #     name: feedback-instana-staging
       #     context: [INSTANA, DEPLOY_STAGING, SLACK]
-      #     service_name: ${{values.component_id}}.eks.stg.dafiti.local
       #     requires: [promote-qa-to-staging]
       # =========================================================================
       - dft/github-approve:
@@ -144,11 +142,10 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-live
           context: [INSTANA, DEPLOY_LIVE, SLACK]
-          service_name: ${{values.component_id}}.eks.live.dafiti.local
           requires: [promote-homolog-to-live]
       - dft/grafana-notify:
           name: grafana-notify-live
           target_env: live
-          context: [GRAFANA,SLACK]
+          context: [GRAFANA, SLACK]
           requires: [promote-homolog-to-live]
       # ===============================================================================================================
