@@ -10,7 +10,7 @@ parameters:
     description: The commit hash to revert deployment
 # including dft org
 orbs:
-  dft: dafiti-group/orb-standard-pipeline@1.0.1
+  dft: dafiti-group/orb-standard-pipeline@1.1.1
 # reserved filters anchors
 test_filters: &test_filters
   branches:
@@ -90,7 +90,6 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-qa
           context: [INSTANA, DEPLOY_QA, SLACK]
-          service_name: template-golang.eks.qa.dafiti.local
           requires: [deploy-to-qa]
       # TODO: when the staging cluster is available, uncoment the section below
       # - approval:
@@ -106,7 +105,6 @@ workflows:
       # - dft/instana-notify:
       #     name: feedback-instana-staging
       #     context: [INSTANA, DEPLOY_STAGING, SLACK]
-      #     service_name: template-golang.eks.stg.dafiti.local
       #     requires: [promote-qa-to-staging]
       # =========================================================================
       - dft/github-approve:
@@ -139,6 +137,5 @@ workflows:
       - dft/instana-notify:
           name: feedback-instana-live
           context: [INSTANA, DEPLOY_LIVE, SLACK]
-          service_name: template-golang.eks.live.dafiti.local
           requires: [promote-homolog-to-live]
       # ===============================================================================================================
