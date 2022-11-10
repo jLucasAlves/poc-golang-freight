@@ -8,11 +8,9 @@ services:
       target: base
     working_dir: /app/
     command: go test -v ./...
-    environment:
-      - ENVIRONMENT=development
-      - PORT=80 # dont forget when change this value here &&&
-      - CGO_ENABLED=0
-      - GOOS=linux
+    env_file:
+      - ./.docker/dev.env
+      - ./.docker/test.env
     volumes:
       - .:/app/
       - go_packages:/go
@@ -20,10 +18,12 @@ services:
   # include all information in test and
   # add the command to run
   app:
-   <<: *defaults
-   command: go run main.go
-   ports:
-      - 8080:80 # ***update value here
+    <<: *defaults
+    command: go run main.go
+    ports:
+        - 8080:80 # ***update value here
+    env_file:
+      - ./.docker/dev.env
 
   # use all configuration probided in test
   # and use a stand-alone image to run tests in Circle-ci workflow
@@ -33,6 +33,14 @@ services:
       context: .
       target: ci
     volumes: []
+  prd:
+    build:
+      context: .
+    ports:
+      - 8080:80 # ***update value here
+    # include only enviroment that you need to production, to test as locally
+    env_file:
+      - ./.docker/prd.env
 
 volumes:
   go_packages: {}

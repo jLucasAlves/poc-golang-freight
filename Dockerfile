@@ -11,6 +11,7 @@ RUN update-ca-certificates
 FROM base as ci
 WORKDIR /app/
 COPY . .
+RUN go mod tidy
 
 # the build layer responsable to create the entrypoint
 FROM ci as builder
