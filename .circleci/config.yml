@@ -10,7 +10,7 @@ parameters:
     description: The commit hash to revert deployment
 # including dft org
 orbs:
-  dft: dafiti-group/orb-standard-pipeline@1.1.2
+  dft: dafiti-group/orb-standard-pipeline@dev:first
 # reserved filters anchors
 test_filters: &test_filters
   branches:
@@ -49,12 +49,13 @@ workflows:
       # features & hotfix =============================================================================================
       - dft/unit-test:
           name: unit-test
-          context: [TESTS, SLACK, BUILD_AND_PUSH]
-          filters: *test_filters
+          context: [SLACK, GITHUB, BUILD_AND_PUSH]
       - dft/sonarqube:
           name: sonarqube
           context: [SONAR, SLACK]
-          filters: *test_filters
+      - dft/checkmarx:
+          name: checkmarx
+          context: [SLACK, GITHUB, CHECKMARX_CLOUD]
       # ===============================================================================================================
       # releases & hotfixes ===========================================================================================
       - dft/hold-slack:
