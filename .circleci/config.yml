@@ -50,12 +50,15 @@ workflows:
       - dft/unit-test:
           name: unit-test
           context: [DEFAULT]
+          filters: *test_filters
       - dft/sonarqube:
           name: sonarqube
           context: [DEFAULT]
+          filters: *test_filters
       - dft/checkmarx:
           name: checkmarx
           context: [DEFAULT]
+          filters: *test_filters
       # ===============================================================================================================
       # releases & hotfixes ===========================================================================================
       - dft/hold-slack:
@@ -114,11 +117,11 @@ workflows:
       #     context: [INSTANA, DEPLOY_STAGING, SLACK]
       #     requires: [promote-qa-to-staging]
       # =========================================================================
-      - dft/github-approve:
-          name: dft-deploy-approve-pr
-          context: [TESTS, SLACK]
-          # requires: [promote-qa-to-staging] # when staging is up and running, use this instead of the below
-          requires: [deploy-to-qa]
+      # - dft/github-approve:
+      #     name: dft-deploy-approve-pr
+      #     context: [TESTS, SLACK]
+      #     # requires: [promote-qa-to-staging] # when staging is up and running, use this instead of the below
+      #     requires: [deploy-to-qa]
       # ===============================================================================================================
       # master & live delivery ========================================================================================
       - dft/github-update:
