@@ -126,11 +126,11 @@ workflows:
       # master & live delivery ========================================================================================
       - dft/github-update:
           name: review-open-pr-to-force-update
-          context: [TESTS, SLACK]
+          context: [DEFAULT]
           filters: *head_filters
       - dft/hold-slack:
           name: slack-notify-hold-live
-          context: [SLACK]
+          context: [DEFAULT]
           step_name: ":alert: pipeline waiting approval to promote to live"
           filters: *head_filters
       - approval:
@@ -142,16 +142,16 @@ workflows:
           # origin: argo/clusters/eks-stg-dafiti/apps # uncomment when staging is up and running
           origin: argo/clusters/eks-qa-dafiti/apps
           destiny: argo/clusters/eks-live-dafiti/apps
-          context: [TESTS, SLACK]
+          context: [DEFAULT]
           requires: [approve-deploy-live, review-open-pr-to-force-update]
       - dft/instana-notify:
           name: feedback-instana-live
-          context: [INSTANA, DEPLOY_LIVE, SLACK]
+          context: [DEFAULT, LIVE]
           requires: [promote-homolog-to-live]
       - dft/grafana-notify:
           name: grafana-notify-live
           target_env: live
-          context: [GRAFANA, SLACK]
+          context: [DEFAULT]
           requires: [promote-homolog-to-live]
       # ===============================================================================================================
 # VS Code Extension Version: 1.5.1
