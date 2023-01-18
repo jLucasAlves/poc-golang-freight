@@ -80,6 +80,7 @@ workflows:
           requires: [unit-test, sonarqube]
       - dft/ecr-build-and-push:
           name: ecr-build-and-push
+          repo_name: lab-devxp-3
           context: [DEFAULT]
           filters: *deployment_filters
           requires: [unit-test, sonarqube, approve-to-qa, start-to-qa]
