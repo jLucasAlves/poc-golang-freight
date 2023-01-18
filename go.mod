@@ -1,15 +1,15 @@
-module github.com/dafiti-group/${{values.component_id}}
+module github.com/dafiti-group/template-golang
 
 go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.8.1
-	github.com/gritzkoo/golang-health-checker-lw v1.0.1
-	github.com/instana/go-sensor v1.43.4
+	github.com/gritzkoo/golang-health-checker v1.6.0
+	github.com/instana/go-sensor v1.42.1
 	github.com/instana/go-sensor/instrumentation/instagin v1.1.0
 	github.com/opentracing/opentracing-go v1.2.0
-	github.com/sirupsen/logrus v1.9.0
-	github.com/stretchr/testify v1.8.0
+	github.com/sirupsen/logrus v1.8.1
+	github.com/stretchr/testify v1.7.2
 )
 
 require (

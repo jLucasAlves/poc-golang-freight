@@ -28,7 +28,18 @@ func HealthCheckLiveness(c *gin.Context) {
 
 // HealthCheckReadiness return a detailed status of all integrations in the list
 func HealthCheckReadiness(c *gin.Context) {
-	result := checker.Readiness()
+	version, _ := ioutil.ReadFile("rev.txt")
+	result := healthcheck.HealthCheckerDetailed(healthcheck.ApplicationConfig{
+		Name:    "template-golang",
+		Version: string(version),
+		Integrations: []healthcheck.IntegrationConfig{
+			{
+				Type: healthcheck.Web,
+				Name: "Just a simple test",
+				Host: "https://github.com/status",
+			},
+		},
+	})
 	if !result.Status {
 		// the line below will print the error on logs, so you need to
 		// configure grafana or instana alarms with this context
