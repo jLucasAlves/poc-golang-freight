@@ -3,9 +3,11 @@ package controllers
 import (
 	"io/ioutil"
 
-	"github.com/dafiti-group/${{values.component_id}}/pkg/github"
+	// "github.com/dafiti-group/${{values.component_id}}/pkg/github"
+	"github.com/dafiti-group/poc-golang-freight/pkg/github"
 	"github.com/gin-gonic/gin"
 	"github.com/gritzkoo/golang-health-checker-lw/pkg/healthchecker"
+	"github.com/gritzkoo/golang-health-checker/pkg/healthcheck"
 	"github.com/sirupsen/logrus"
 )
 
@@ -30,7 +32,7 @@ func HealthCheckLiveness(c *gin.Context) {
 func HealthCheckReadiness(c *gin.Context) {
 	version, _ := ioutil.ReadFile("rev.txt")
 	result := healthcheck.HealthCheckerDetailed(healthcheck.ApplicationConfig{
-		Name:    "template-golang",
+		Name:    "poc-golang-freight",
 		Version: string(version),
 		Integrations: []healthcheck.IntegrationConfig{
 			{

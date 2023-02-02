@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/dafiti-group/template-golang/configs"
+	"github.com/dafiti-group/poc-golang-freight/configs"
 )
 
 func main() {

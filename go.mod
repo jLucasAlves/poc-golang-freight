@@ -1,15 +1,20 @@
-module github.com/dafiti-group/template-golang
+module github.com/dafiti-group/poc-golang-freight
 
 go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.8.1
-	github.com/gritzkoo/golang-health-checker v1.6.0
+	github.com/gritzkoo/golang-health-checker-lw v1.0.1
 	github.com/instana/go-sensor v1.42.1
 	github.com/instana/go-sensor/instrumentation/instagin v1.1.0
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/sirupsen/logrus v1.8.1
-	github.com/stretchr/testify v1.7.2
+	github.com/stretchr/testify v1.8.0
+)
+
+require (
+	github.com/bradfitz/gomemcache v0.0.0-20220106215444-fb4bf637b56d // indirect
+	github.com/go-redis/redis v6.15.9+incompatible // indirect
 )
 
 require (
@@ -19,6 +24,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.0 // indirect
 	github.com/goccy/go-json v0.9.11 // indirect
+	github.com/gritzkoo/golang-health-checker v1.6.0
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/looplab/fsm v0.3.0 // indirect
@@ -27,7 +33,6 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.5 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/stretchr/objx v0.4.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect
 	golang.org/x/net v0.0.0-20220826154423-83b083e8dc8b // indirect

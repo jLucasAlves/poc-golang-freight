@@ -1,8 +1,8 @@
 package configs
 
 import (
-	"github.com/dafiti-group/template-golang/controllers"
-	"github.com/dafiti-group/template-golang/middlewares"
+	"github.com/dafiti-group/poc-golang-freight/controllers"
+	"github.com/dafiti-group/poc-golang-freight/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,7 +17,7 @@ func GetServer() *gin.Engine {
 	server.Use(middlewares.InstanaTracerMiddleware())
 
 	// routes section
-	server.GET("/", controllers.Example)
+	server.POST("/", controllers.Freight)
 	server.GET("/health-check/liveness", controllers.HealthCheckLiveness)
 	server.GET("/health-check/readiness", controllers.HealthCheckReadiness)
 
