@@ -24,21 +24,17 @@ func (service *freightService) GroupByShipmentType(freights []model.Freight) map
 }
 
 func (service *freightService) FillShipmentTypeCounts(freights []model.Freight) map[string]int {
-	shipmentTypeMap := map[string]int{
-		"NotFound":     0,
-		"Own":          1,
-		"Crossdocking": 2,
-		"Consigned":    3,
-		"DropShipping": 4,
-		"Marketplace":  5,
-	}
+	result := make(map[string]int)
+
 	groupedByShipmentType := service.GroupByShipmentType(freights)
 
-	for shipmentTypeName, shipmentType := range shipmentTypeMap {
+	for shipmentTypeName, shipmentType := range model.ShipmentTypeMap {
 		count, exists := groupedByShipmentType[shipmentType]
 		if exists {
-			shipmentTypeMap[shipmentTypeName] = count
+			result[shipmentTypeName] = count
+		} else {
+			result[shipmentTypeName] = 0
 		}
 	}
-	return shipmentTypeMap
+	return result
 }
