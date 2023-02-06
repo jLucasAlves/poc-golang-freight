@@ -4,10 +4,25 @@ import (
 	"net/http"
 
 	"github.com/dafiti-group/poc-golang-freight/model"
+	"github.com/dafiti-group/poc-golang-freight/service"
 	"github.com/gin-gonic/gin"
 )
 
-func Freight(c *gin.Context) {
+type FreightController interface {
+	FilterShipmentType(context *gin.Context)
+}
+
+type freightController struct {
+	freightService service.FreightService
+}
+
+func NewFreightController(freightService service.FreightService) FreightController {
+	return &freightController{
+		freightService: freightService,
+	}
+}
+
+func (f freightController) FilterShipmentType(c *gin.Context) {
 	var freight []model.Freight
 
 	if error := c.ShouldBindJSON(&freight); error != nil {
@@ -15,35 +30,9 @@ func Freight(c *gin.Context) {
 		return
 	}
 
-	response := fillShipmentTypeCounts(freight)
+	// cf := make(chan )
+
+	response := f.freightService.FillShipmentTypeCounts(freight)
 
 	c.JSON(http.StatusAccepted, &response)
-}
-
-func groupByShipmentType(freights []model.Freight) map[int]int {
-	result := make(map[int]int)
-	for _, freight := range freights {
-		result[freight.ShipmentType]++
-	}
-	return result
-}
-
-func fillShipmentTypeCounts(freights []model.Freight) map[string]int {
-	shipmentTypeMap := map[string]int{
-		"NotFound":     0,
-		"Own":          0,
-		"Crossdocking": 0,
-		"Consigned":    0,
-		"DropShipping": 0,
-		"Marketplace":  0,
-	}
-	groupedByShipmentType := groupByShipmentType(freights)
-
-	for shipmentTypeName, shipmentType := range shipmentTypeMap {
-		count, exists := groupedByShipmentType[shipmentType]
-		if exists {
-			shipmentTypeMap[shipmentTypeName] = count
-		}
-	}
-	return shipmentTypeMap
 }
