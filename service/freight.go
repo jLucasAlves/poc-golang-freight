@@ -10,6 +10,7 @@ import (
 type FreightService interface {
 	FillShipmentTypeCounts(chnFreight chan []model.Freight, chnShipmentType chan map[string]int)
 	HigherPrice(chnFreight chan []model.Freight, chnHigherPrice chan model.Freight)
+	HigherWeight(chnFreight chan []model.Freight, chnHigherWeight chan model.Freight)
 }
 
 type freightService struct{}
@@ -46,5 +47,21 @@ func (service *freightService) HigherPrice(chnFreight chan []model.Freight, chnH
 			}
 		}
 		chnHigherPrice <- freight
+	}
+}
+
+func (service *freightService) HigherWeight(chnFreight chan []model.Freight, chnHigherWeight chan model.Freight) {
+	var freight model.Freight
+	var currentHighestWeight int64
+
+	for freights := range chnFreight {
+		for _, freightItem := range freights {
+			weight, _ := strconv.ParseInt(strings.TrimLeft(freightItem.Weight, "."), 36, 64)
+			if currentHighestWeight == 0 || weight > currentHighestWeight {
+				currentHighestWeight = weight
+				freight = freightItem
+			}
+		}
+		chnHigherWeight <- freight
 	}
 }
