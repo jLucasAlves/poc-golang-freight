@@ -30,9 +30,20 @@ func (f freightController) FilterShipmentType(c *gin.Context) {
 		return
 	}
 
-	// cf := make(chan )
+	chnFreight := make(chan []model.Freight)
+	chnShipmentType := make(chan map[string]int)
+	chnHigherPrice := make(chan model.Freight)
 
-	response := f.freightService.FillShipmentTypeCounts(freight)
+	go f.freightService.FillShipmentTypeCounts(chnFreight, chnShipmentType)
+	chnFreight <- freight
+
+	go f.freightService.HigherPrice(chnFreight, chnHigherPrice)
+	chnFreight <- freight
+
+	response := map[string]interface{}{
+		"Shipment Type": <-chnShipmentType,
+		"Higher Price":  <-chnHigherPrice,
+	}
 
 	c.JSON(http.StatusAccepted, &response)
 }
