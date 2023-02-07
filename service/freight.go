@@ -11,6 +11,7 @@ type FreightService interface {
 	FillShipmentTypeCounts(chnFreight chan []model.Freight, chnShipmentType chan map[string]int)
 	HigherPrice(chnFreight chan []model.Freight, chnHigherPrice chan model.Freight)
 	HigherWeight(chnFreight chan []model.Freight, chnHigherWeight chan model.Freight)
+	CountSKU(chnFreight chan []model.Freight, chnCountSKU chan map[string]int)
 }
 
 type freightService struct{}
@@ -64,4 +65,15 @@ func (service *freightService) HigherWeight(chnFreight chan []model.Freight, chn
 		}
 		chnHigherWeight <- freight
 	}
+}
+
+func (s *freightService) CountSKU(chnFreight chan []model.Freight, chnCountSKU chan map[string]int) {
+	freightItems := <-chnFreight
+	count := make(map[string]int)
+
+	for _, f := range freightItems {
+		count[f.Sku]++
+	}
+
+	chnCountSKU <- count
 }
